@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="mainButtonStyle" TargetType="Button">
+    <Setter Property="Background">
+            <Setter.Value>
+            <LinearGradientBrush EndPoint="1,0">
+                <GradientStop Color="#3D6D79" Offset="0.1"/>
+                <GradientStop Color="#3E7A61" Offset="1.0"/>
+            </LinearGradientBrush>
+                </Setter.Value>
+        </Setter>
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+    <Style x:Key="iconLabeltyle" TargetType="Button">
+        <Setter Property="Text" Value="QuantEd"/>
+        <Setter Property="TextColor" Value="#FBE7D2"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="27"/>
+        <Setter Property="FontFamily" Value="Jost"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        
+    </Style>
+
+    
+
+    <Style x:Key="headerStyle" TargetType="Grid">
+        <Setter Property="RowDefinitions">
+            <Setter.Value>
+                 <RowDefinition Height="*" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ColumnDefinitions">
+            <Setter.Value>
+                 <ColumnDefinitionCollection>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                 </ColumnDefinitionCollection>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ColumnSpacing" Value="5"/>
+    </Style>
+
+    <Style x:Key="buttonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="#FBE7D2"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="Jost"/>
+        <Setter Property="BackgroundColor" Value="#3D6D79"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <Style x:Key="textFieldStyle" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="#F5F7F4"/>
+         <Setter Property="TextColor" Value="#3D6D79"/>
+         <Setter Property="FontFamily" Value="Jost"/>
+    </Style>
+</ResourceDictionary>
+

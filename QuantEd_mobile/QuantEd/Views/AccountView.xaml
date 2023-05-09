@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuantEd.Views.AccountView"
+             Title="">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <BoxView Color="#3D6D79"/>
+
+        <Grid Grid.Row="0" Style="{StaticResource headerStyle}">
+            <ImageButton
+                
+                Source="logo_light.png"
+                HeightRequest="45"
+               Clicked="ToMainPageLogged"
+             />
+
+            <Button
+            Grid.Column="1"
+            Style="{StaticResource iconLabeltyle}"
+            Clicked="ToMainPageLogged"   
+             />
+         
+            <Button
+            Grid.Column="2"
+            Text="Explore"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="EndAndExpand"
+                Clicked="Button_Clicked"
+         />
+             <Button
+            Grid.Column="3"
+            Text="Account"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="CenterAndExpand"
+         />
+        </Grid>
+
+        <BoxView Grid.Row="1" Color="#DBF1F5"/>
+        
+            <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+                <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="#F5F7F4"/>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0">
+                    <Label
+                        Text="Account"
+                        TextColor="#3D6D79"
+                        FontAttributes="Bold"
+                        FontSize="23"
+                        FontFamily="Jost"
+                        Margin="20,20,10,0"
+                        HorizontalOptions="Start"
+                    />
+                        <Label
+                        Text="listener"
+                        TextColor="#3D6D79"
+                        FontSize="15"
+                        FontFamily="Jost"
+                        Margin="20,0,10,10"
+                        HorizontalOptions="Start"
+                    />
+                    </StackLayout>
+                    <Border  Margin="20,10,20,10" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                        <Entry
+                        Grid.Row="1"
+                        Placeholder="First name"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                        IsEnabled="False"
+                        />
+                    </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="2" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                    <Entry
+                        Grid.Row="2"
+                        Placeholder="Last name"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                        IsEnabled="False"
+                     />
+                        </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="3" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                        <StackLayout  Orientation="Horizontal" VerticalOptions="Fill">
+                    <Entry
+                        Grid.Row="3"
+                        Placeholder="Password"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                        IsEnabled="False"
+                        WidthRequest="230"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Fill"
+                        Margin="0,0,0,0"
+                     />
+                            <Line Y2="55" Stroke="#3D6D79"/>
+                            <Button
+                                Text="S"
+                                FontSize="25"
+                                TextColor="#3D6D79"
+                                FontAttributes="Bold"
+                                Clicked="SeePassword"
+                                />
+                            </StackLayout>
+                        </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="4" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                    <Entry
+                        Grid.Row="4"
+                        Placeholder="Email"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                        IsEnabled="False"
+                     />
+                        </Border>
+                     <Border  Margin="20,10,20,10" Grid.Row="5" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                         <Entry
+                        Grid.Row="5"
+                        Placeholder="Date of birth"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                        IsEnabled="False"
+                     />
+                        </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="6" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                          <Picker  x:Name="genderPicker" Title = "Gender" BackgroundColor="#F5F7F4" TextColor="#3D6D79" IsEnabled="False">
+                            <Picker.Items>
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                                <x:String>None</x:String>
+                            </Picker.Items>
+                          </Picker>
+                    </Border>
+
+                    <Button
+                        Style="{StaticResource mainButtonStyle}"
+                        Grid.Row="7"
+                        Text="Change Info"
+                        TextColor="#FBE7D2"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        WidthRequest="160"
+                        HeightRequest="40"
+                        CornerRadius="5"
+                        
+                    />
+
+                   
+            </Grid>
+
+         </Grid>
+        
+    </Grid>
+</ContentPage>
+

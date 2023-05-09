@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuantEd.Views.MyCourses"
+             Title="MyCourses">
+    <Grid >
+    <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="5*" />
+           
+     </Grid.RowDefinitions>
+         <BoxView Color="#3D6D79"/>
+        <Grid Grid.Row="0"
+              Style="{StaticResource headerStyle}">
+        
+         <ImageButton
+                
+                Source="logo_light.png"
+                HeightRequest="45"
+             Clicked="ToMainLogged"
+               />
+
+        <Button
+            
+            Grid.Column="1"
+            Style="{StaticResource iconLabeltyle}"
+            Clicked="ToMainLogged"
+         />
+         
+            <Button
+            Grid.Column="2"
+            Text="Explore"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="EndAndExpand"
+                Clicked="ToCourses"
+         />
+             <Button
+            Grid.Column="3"
+            Text="Account"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="CenterAndExpand"
+            Clicked="ViewAccount"
+         />
+           </Grid>
+         <BoxView Grid.Row="1" Color="#DBF1F5"/>
+        <ScrollView Grid.Row="1" x:Name="CoursesList" Margin="0,10,0,10"/>
+        </Grid>
+</ContentPage>

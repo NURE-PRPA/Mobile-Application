@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuantEd.Views.CourseSearch"
+             Title="">
+    <Grid x:Name="Courses">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="9*" />
+            
+        </Grid.RowDefinitions>
+         <BoxView Color="#3D6D79"/>
+
+        <Grid Grid.Row="0" Style="{StaticResource headerStyle}">
+            <ImageButton
+                
+                Source="logo_light.png"
+                HeightRequest="45"
+                Clicked="ToMainPageLogged"
+               />
+
+        <Button
+            
+            Grid.Column="1"
+            Style="{StaticResource iconLabeltyle}"
+            Clicked="ToMainPageLogged"
+         />
+         
+            <Button
+                IsEnabled="False"
+            Grid.Column="2"
+            Text="Explore"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="EndAndExpand"
+         />
+             <Button
+            Grid.Column="3"
+            Text="Account"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="Center"
+            Clicked="ViewAccount"
+              />
+        </Grid>
+
+        <BoxView Grid.Row="1" BackgroundColor="#DBF1F5" Grid.RowSpan="4"/>
+
+        <Label
+            Grid.Row="1"
+            Text="Explore courses"
+            TextColor="#3D6D79"
+            SemanticProperties.HeadingLevel="Level2"
+            FontAttributes="Bold"
+            FontSize="24"
+            FontFamily="Jost"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"
+            Margin="25"
+         />
+        <Border Margin="0,0,25,0" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="2" HeightRequest="40" WidthRequest="100" HorizontalOptions="End" BackgroundColor="#F5F7F4"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+        <Button
+            Grid.Row="1"
+            Text="My Courses"
+            HorizontalOptions="Center"
+            TextColor="#3D6D79"
+            FontAttributes="Bold"
+            FontSize="15"
+            Clicked="ToMyCourses"
+            />
+            </Border>
+        <Grid Grid.Row="2" RowSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                 <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <BoxView BackgroundColor="#F5F7F4" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="25,0,25,0" CornerRadius="10"/>
+            <Border  Margin="35,20,20,10" Grid.Row="0" Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="40"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                    <Entry
+                        Grid.Row="2"
+                        Placeholder="Name"
+                        Style="{StaticResource textFieldStyle}"
+                        
+                        MaxLength="20"
+                     />
+                        </Border>
+
+                    <Border  Margin="35,0,20,20" Grid.Row="2" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                          <Picker  x:Name="levelPicker" Title = "Level" BackgroundColor="#F5F7F4" TextColor="#3D6D79">
+                            <Picker.Items>
+                                <x:String>Beginner</x:String>
+                                <x:String>Intermediate</x:String>
+                                <x:String>Advanced</x:String>
+                            </Picker.Items>
+                          </Picker>
+                    </Border>
+
+                    <Border  Margin="0,20,35,10" Grid.Row="0" Grid.Column="1" Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="40"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                            <Picker  x:Name="topicPicker" Title = "Topic" BackgroundColor="#F5F7F4" TextColor="#3D6D79">
+                          </Picker>
+                        </Border>
+
+                    <Border  Margin="0,-15,35,10" Grid.Row="1" Grid.Column="1" Stroke="#F5F7F4" StrokeThickness="1.5" HeightRequest="40"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                        <StackLayout>
+                            <Slider Minimum ="0" Maximum="50" Value="30"  
+                                    MinimumTrackColor="#3E6E7A"
+                                    MaximumTrackColor="#3E7A61"
+                                    ThumbColor="#3E6E7A" />
+                            <StackLayout Orientation="Horizontal" Margin="0,-10,0,0" Spacing="120">
+                            <Label Text="0" HorizontalOptions="Start" TextColor="#3E6E7A"/>
+                             <Label Text="100" HorizontalOptions="End" TextColor="#3E7A61"/>
+                            </StackLayout>
+                        </StackLayout>
+                        </Border>
+        </Grid>
+
+        <!-- <Grid Grid.Row="3" Margin="35,30,35,15"  WidthRequest="300" HeightRequest="240">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.5*"/>
+                
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+             <Border  Grid.Row="0" Stroke="#3D6D79" StrokeThickness="1.5" Grid.ColumnSpan="3"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+            <Image
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Source="astronomy.png" Aspect="AspectFill" 
+                />
+              </Border>
+            <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  BackgroundColor="White"/>
+            <StackLayout Grid.Row="1" Grid.Column="0" Margin="10,10,10,0">
+            <Label Text="C# for everyone" TextColor="#3D6D79"   FontAttributes="Bold" FontFamily="Jost" FontSize="18"/>
+            <Label Text="by NURE" Margin="0,4,0,0" TextColor="#8C8D8D" FontAttributes="Bold" FontSize="15" FontFamily="Jost"/>
+            <Label Text="Programming" Margin="0,4,0,0" TextColor="#3D6D79" FontSize="15" FontFamily="Jost"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Grid.Column="1" Margin="0,10,0,10" Spacing="13">
+            <Label  Text="12 modules"  TextColor="#3D6D79" FontFamily="Jost"/>
+            <Label  Text="20$"   TextColor="#3D6D79" Margin="0,10,10,0" FontFamily="Jost" FontAttributes="Bold" FontSize="25"  HorizontalTextAlignment="End" VerticalTextAlignment="End"/>
+
+            </StackLayout>
+        </Grid> -->
+    </Grid>
+</ContentPage>

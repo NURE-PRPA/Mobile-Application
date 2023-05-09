@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuantEd.Views.Registration"
+             Title="">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <BoxView Color="#3D6D79"/>
+
+        <Grid Grid.Row="0" Style="{StaticResource headerStyle}">
+            <ImageButton
+                
+                Source="logo_light.png"
+                HeightRequest="45"
+                Clicked="ToMainPage"
+             />
+
+            <Button
+            Grid.Column="1"
+            Style="{StaticResource iconLabeltyle}"
+                Clicked="ToMainPage"
+             />
+         
+            <Button
+            Grid.Column="2"
+            Text="Explore"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="EndAndExpand"
+         />
+             <Button
+            Grid.Column="3"
+            Text="Log In"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="CenterAndExpand"
+         />
+        </Grid>
+
+        <BoxView Grid.Row="1" Color="#DBF1F5"/>
+        
+            <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+                <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="#F5F7F4"/>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Text="Become a part of QuantEd!"
+                        TextColor="#3D6D79"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        FontFamily="Jost"
+                        Margin="10,20,10,10"
+                        HorizontalOptions="Center"
+                    />
+                    <Border  Margin="20,10,20,10" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                        <Entry
+                        Grid.Row="1"
+                        Placeholder="First name"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                        />
+                    </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="2" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                    <Entry
+                        Grid.Row="2"
+                        Placeholder="Last name"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                     />
+                        </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="3" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                    <Entry
+                        Grid.Row="3"
+                        Placeholder="Password"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                     />
+                        </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="4" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                    <Entry
+                        Grid.Row="4"
+                        Placeholder="Email"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                     />
+                        </Border>
+                     <Border  Margin="20,10,20,10" Grid.Row="5" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                         <Entry
+                        Grid.Row="5"
+                        Placeholder="Date of birth"
+                        Style="{StaticResource textFieldStyle}"
+                        MaxLength="20"
+                     />
+                        </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="6" Stroke="#3D6D79" StrokeThickness="1.5"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                          <Picker  x:Name="genderPicker" Title = "Gender" BackgroundColor="#F5F7F4" TextColor="#3D6D79">
+                            <Picker.Items>
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                                <x:String>None</x:String>
+                            </Picker.Items>
+                          </Picker>
+                    </Border>
+
+                    <Button
+                        Style="{StaticResource mainButtonStyle}"
+                        Grid.Row="7"
+                        Text="Sign Up"
+                        TextColor="#FBE7D2"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        WidthRequest="160"
+                        HeightRequest="40"
+                        CornerRadius="5"
+                        Clicked="ToMainLog"
+                    />
+
+                    <Border  Margin="20,10,20,10" Grid.Row="8" Stroke="#3D6D79" StrokeThickness="1.5" WidthRequest="200"> 
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                          <AbsoluteLayout>
+                                <ImageButton
+                                    Source="google.png"
+                                    HorizontalOptions="Center"
+                                    Padding="0,0,0,0"
+                                    AbsoluteLayout.LayoutBounds="0.05, 0.5, 25, 25"
+                                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    />
+
+                              <Button
+                                    Text="Sign up with Google"
+                                    TextColor="#3D6D79"
+                                    HorizontalOptions="Center"
+                                    Padding="0,0,0,0"
+                                  AbsoluteLayout.LayoutBounds="0.6, 0.5, 50, 80"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                />
+                           </AbsoluteLayout>
+                    </Border>
+            </Grid>
+
+         </Grid>
+        
+    </Grid>
+</ContentPage>
