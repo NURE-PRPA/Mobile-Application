@@ -8,13 +8,15 @@ public partial class CourseSearch : ContentPage
 	public CourseSearch()
 	{
 		InitializeComponent();
-		Grid grid = (Grid)FindByName("Courses");
+      
+        Grid grid = (Grid)FindByName("Courses");
         StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0, 0) };
         for (int i = 0; i< 2; i++)
         {
             Grid card = MakeCourseCard();
-            var tapGesture = new ClickGestureRecognizer();
-            tapGesture.Clicked += ToCourseDescription;
+            card.AutomationId = "i";
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += ToCourseDescription;
             card.GestureRecognizers.Add(tapGesture);
             CourseStack.Add(card);
         }
@@ -41,7 +43,8 @@ public partial class CourseSearch : ContentPage
 
     void ToCourseDescription(System.Object sender, System.EventArgs e)
     {
-        Navigation.PushModalAsync(new CourseDescr());
+        var courseDescrPage = new CourseDescr();
+        Navigation.PushAsync(courseDescrPage);
     }
 
     //Parameters is Course
@@ -102,9 +105,10 @@ public partial class CourseSearch : ContentPage
             TextColor = Color.FromHex("#3D6D79"),
             FontAttributes = FontAttributes.Bold,
             FontFamily = "Jost",
-            FontSize = 18
+            FontSize = 18,
+            StyleId = "name"
         };
-
+     
         var ByOrganization = new Label
         {
             Text = "by NURE",
