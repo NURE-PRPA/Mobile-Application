@@ -9,7 +9,11 @@ public partial class MainPage_LogIn : ContentPage
 
     void ToCourses(System.Object sender, System.EventArgs e)
     {
-		Navigation.PushModalAsync(new CourseSearch());
+        var search = new CourseSearch();
+        var navigation = new NavigationPage(search);
+        navigation.Title = null;
+        //Application.Current.MainPage = navigation;
+        Application.Current.MainPage.Navigation.PushAsync(navigation);
     }
 
     void ViewAccount(System.Object sender, System.EventArgs e)
