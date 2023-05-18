@@ -6,13 +6,16 @@
              >
     <Grid x:Name="Courses">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="9*" />
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="7*" />
             
         </Grid.RowDefinitions>
          <BoxView Color="#3D6D79"/>
+        <BoxView Color="Pink" Grid.Row="1"/>
+        <BoxView Color="White" Grid.Row="2"/>
+        <BoxView Color="Yellow" Grid.Row="3"/>
 
         <Grid Grid.Row="0" Style="{StaticResource headerStyle}">
             <ImageButton
@@ -57,30 +60,31 @@
             FontFamily="Jost"
             HorizontalOptions="Start"
             VerticalOptions="Center"
-            Margin="25"
+            Margin="25,0,0,0"
          />
-        <Border Margin="0,0,25,0" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="2" HeightRequest="40" WidthRequest="100" HorizontalOptions="End" BackgroundColor="#F5F7F4"> 
+        <Border Margin="0,0,25,0" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="2" HeightRequest="45" WidthRequest="130" HorizontalOptions="End" BackgroundColor="#White"> 
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
                         </Border.StrokeShape>
         <Button
-            Grid.Row="1"
+            Padding="0,-10"
             Text="My Courses"
-            HorizontalOptions="Center"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
             TextColor="#3D6D79"
             FontAttributes="Bold"
-            FontSize="15"
+            FontSize="14"
             Clicked="ToMyCourses"
             />
             </Border>
-        <Grid Grid.Row="2" RowSpacing="2">
+        <Grid Grid.Row="2" RowSpacing="12" BackgroundColor="#F5F7F4" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                 <RowDefinition Height="*"/>
+                <RowDefinition Height="1*"/>
+                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
             <BoxView BackgroundColor="#F5F7F4" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="25,0,25,0" CornerRadius="10"/>
@@ -97,11 +101,11 @@
                      />
                         </Border>
 
-                    <Border  Margin="35,0,20,20" Grid.Row="2" Stroke="#3D6D79" StrokeThickness="1.5"> 
+            <Border  Margin="35,0,20,20" Grid.Row="2" Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="40"> 
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
                         </Border.StrokeShape>
-                          <Picker  x:Name="levelPicker" Title = "Level" BackgroundColor="#F5F7F4" TextColor="#3D6D79">
+                          <Picker  x:Name="levelPicker" Title = "Level" BackgroundColor="#F5F7F4" TextColor="#3D6D79" >
                             <Picker.Items>
                                 <x:String>Beginner</x:String>
                                 <x:String>Intermediate</x:String>
@@ -110,25 +114,26 @@
                           </Picker>
                     </Border>
 
-                    <Border  Margin="0,20,35,10" Grid.Row="0" Grid.Column="1" Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="40"> 
+            <Border  Margin="0,20,35,10" Grid.Row="0" Grid.Column="1" Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="40" BackgroundColor="#F5F7F4" > 
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
                         </Border.StrokeShape>
                             <Picker  x:Name="topicPicker" Title = "Topic" BackgroundColor="#F5F7F4" TextColor="#3D6D79">
                           </Picker>
                         </Border>
-
-                    <Border  Margin="0,-15,35,10" Grid.Row="1" Grid.Column="1" Stroke="#F5F7F4" StrokeThickness="1.5" HeightRequest="40"> 
+            <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="#F5F7F4"/>
+            <Border  Margin="0,0,35,10" Grid.Row="1" Grid.Column="1" Stroke="#F5F7F4" StrokeThickness="1.5" HeightRequest="40"> 
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
                         </Border.StrokeShape>
-                        <StackLayout>
+                <StackLayout Margin="0,10,0,0" BackgroundColor="#F5F7F4">
                             <Slider Minimum ="0" Maximum="50" Value="30"  
                                     MinimumTrackColor="#3E6E7A"
                                     MaximumTrackColor="#3E7A61"
-                                    ThumbColor="#3E6E7A" />
+                                    ThumbColor="#3E6E7A" 
+                                    BackgroundColor ="#F5F7F4"/>
                             <StackLayout Orientation="Horizontal" Margin="0,-10,0,0" Spacing="120">
-                            <Label Text="0" HorizontalOptions="Start" TextColor="#3E6E7A"/>
+                            <Label Text="0" HorizontalOptions="Start" TextColor="#3E6E7A" />
                              <Label Text="100" HorizontalOptions="End" TextColor="#3E7A61"/>
                             </StackLayout>
                         </StackLayout>

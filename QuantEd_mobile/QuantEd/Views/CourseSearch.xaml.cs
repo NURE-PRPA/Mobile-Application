@@ -10,8 +10,8 @@ public partial class CourseSearch : ContentPage
 		InitializeComponent();
       
         Grid grid = (Grid)FindByName("Courses");
-        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0, 0) };
-        for (int i = 0; i< 2; i++)
+        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0,40) };
+        for (int i = 0; i< 3; i++)
         {
             Grid card = MakeCourseCard();
             card.AutomationId = "i";
@@ -20,7 +20,7 @@ public partial class CourseSearch : ContentPage
             card.GestureRecognizers.Add(tapGesture);
             CourseStack.Add(card);
         }
-        ScrollView scrollView = new ScrollView { Margin = new Thickness(0, 20, 0, 0), Content = CourseStack};
+        ScrollView scrollView = new ScrollView { Margin = new Thickness(0, 10, 0, 40), Content = CourseStack};
         grid.Add(scrollView, 0, 3);
        
     }
@@ -95,7 +95,7 @@ public partial class CourseSearch : ContentPage
 
         var stackLayoutLeft = new StackLayout
         {
-            Margin = new Thickness(10, 10, 10, 0),
+            Margin = new Thickness(10, 5, 10, 0),
            
         };
 
@@ -137,7 +137,7 @@ public partial class CourseSearch : ContentPage
         var stackLayoutRight = new StackLayout
         {
             Margin = new Thickness(0, 10, 0, 10),
-            Spacing = 13
+            Spacing = 10
         };
 
         var CourseModules = new Label

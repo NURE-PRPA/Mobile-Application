@@ -159,7 +159,7 @@
                         FontAttributes="Bold"
                         HorizontalOptions="Center"
                         WidthRequest="160"
-                        HeightRequest="40"
+                        HeightRequest="45"
                         CornerRadius="5"
                         Clicked="ToMainLog"
                     />
@@ -180,9 +180,10 @@
                               <Button
                                     Text="Sign up with Google"
                                     TextColor="#3D6D79"
+                                    BackgroundColor="White"
                                     HorizontalOptions="Center"
                                     Padding="0,0,0,0"
-                                  AbsoluteLayout.LayoutBounds="0.6, 0.5, 50, 80"
+                                    Margin="50, 10"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" 
                                 />
                            </AbsoluteLayout>

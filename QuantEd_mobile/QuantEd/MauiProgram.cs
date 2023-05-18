@@ -14,12 +14,13 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-
+     
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
+		//builder.Services.AddHttpClient("api", httpClient=> httpClient.BaseAddress= new Uri("http://localhost:5233/api"));
 #endif
 
-		return builder.Build();
+        return builder.Build();
 	}
 }
 

@@ -38,6 +38,7 @@
             Text="Log In"
             Style="{StaticResource buttonStyle}"
             HorizontalOptions="CenterAndExpand"
+                 Clicked="GoToLogIn"
          />
            </Grid>
          <BoxView Grid.Row="1" Color="#DBF1F5"/>

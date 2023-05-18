@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuantEd.Views.LogIn"
+             Title="LogIn">
+    <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <BoxView Color="#3D6D79"/>
+
+            <Grid Grid.Row="0" Style="{StaticResource headerStyle}">
+                <ImageButton
+                
+                Source="logo_light.png"
+                HeightRequest="45"
+                Clicked="ToMainPage"
+             />
+
+                <Button
+            Grid.Column="1"
+            Style="{StaticResource iconLabeltyle}"
+                Clicked="ToMainPage"
+             />
+
+                <Button
+            Grid.Column="2"
+            Text="Explore"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="EndAndExpand"
+         />
+                <Button
+            Grid.Column="3"
+            Text="Log In"
+            Style="{StaticResource buttonStyle}"
+            HorizontalOptions="CenterAndExpand"
+         />
+            </Grid>
+
+            <BoxView Grid.Row="1" Color="#DBF1F5"/>
+
+            <Grid Grid.Row="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="#F5F7F4"/>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Text="Become a part of QuantEd!"
+                        TextColor="#3D6D79"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        FontFamily="Jost"
+                        Margin="10,20,10,10"
+                        HorizontalOptions="Center"
+                    />
+                    <Border  Margin="20,10,20,10" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="1.5">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                        <Entry x:Name="email"
+                        Grid.Row="1"
+                        Placeholder="Email"
+                        Style="{StaticResource textFieldStyle}"
+                        FontSize="18"
+                        />
+                    </Border>
+
+                    <Border  Margin="20,10,20,10" Grid.Row="2" Stroke="#3D6D79" StrokeThickness="1.5">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                        <Entry x:Name ="password"
+                        Grid.Row="2"
+                        Placeholder="Password"
+                        Style="{StaticResource textFieldStyle}"
+                        FontSize="18"
+                     />
+                    </Border>
+
+
+                    <Button
+                        Style="{StaticResource mainButtonStyle}"
+                        Grid.Row="3"
+                        Text="Log In"
+                        TextColor="#FBE7D2"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        WidthRequest="160"
+                        HeightRequest="50"
+                        CornerRadius="5"
+                        Clicked="ToMainLog"
+                    />
+
+                    <Border  Margin="20,10,20,10" Grid.Row="4" Stroke="#3D6D79" StrokeThickness="1.5" WidthRequest="200"  HeightRequest="60">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                        <AbsoluteLayout>
+                            <ImageButton
+                                    Source="google.png"
+                                    HorizontalOptions="Center"
+                                    Padding="0,0,0,0"
+                                    AbsoluteLayout.LayoutBounds="0.05, 0.5, 25, 25"
+                                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    />
+
+                            <Button
+                                    Text="Sign up with Google"
+                                    TextColor="#3D6D79"
+                                FontSize="17"
+                                    BackgroundColor="White"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Padding="0,0,0,0"
+                                    Margin="40, 15"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                />
+                        </AbsoluteLayout>
+                    </Border>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+
+</ContentPage>
