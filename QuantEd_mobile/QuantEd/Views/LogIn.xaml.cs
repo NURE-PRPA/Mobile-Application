@@ -34,6 +34,7 @@ public partial class LogIn : ContentPage
         var response = await MainPage._client.PostAsync($"{MainPage.BaseAddress}/api/auth/login", content);
         var responseData1 = JsonConvert.DeserializeObject<Response<object>>(await response.Content.ReadAsStringAsync());
         if (responseData1.Messages[0] == "Log in success") {
+            MainPage.isAuthorized = true;
             await Navigation.PushModalAsync(new MainPage_LogIn());
         }
         else

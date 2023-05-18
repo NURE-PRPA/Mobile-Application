@@ -1,30 +1,48 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Controls.Internals;
+using Newtonsoft.Json;
+//using Windows.Media.Protection.PlayReady;
+using Core.Models;
+using WebAPI.Response.Models;
+using Nito.AsyncEx;
 
 namespace QuantEd.Views;
 
 public partial class CourseSearch : ContentPage
 {
-	public CourseSearch()
-	{
+    List<Course> courses;
+    public CourseSearch()
+    {
 		InitializeComponent();
-      
-        Grid grid = (Grid)FindByName("Courses");
-        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0,40) };
-        for (int i = 0; i< 3; i++)
+        AsyncContext.Run(() => FillCards());
+        Button acc = (Button)FindByName("account");
+        Button mycourses = (Button)FindByName("myCourses");
+        if (!MainPage.isAuthorized)
         {
-            Grid card = MakeCourseCard();
-            card.AutomationId = "i";
+            acc.Text = "Log In";
+            myCourses.IsEnabled = false;
+            myCourses.IsVisible = false;
+        }
+
+    }
+
+    async void FillCards()
+    {
+        var coursesList = await GetCourses();
+        Grid grid = (Grid)FindByName("Courses");
+        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0, 40) };
+        for (int i = 0; i < coursesList.Count; i++)
+        {
+            Grid card = MakeCourseCard(coursesList[i]);
+            card.AutomationId = coursesList[i].Id;
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += ToCourseDescription;
             card.GestureRecognizers.Add(tapGesture);
             CourseStack.Add(card);
         }
-        ScrollView scrollView = new ScrollView { Margin = new Thickness(0, 10, 0, 40), Content = CourseStack};
+        ScrollView scrollView = new ScrollView { Margin = new Thickness(0, 10, 0, 40), Content = CourseStack };
         grid.Add(scrollView, 0, 3);
-       
     }
-
     void ToMyCourses(System.Object sender, System.EventArgs e)
     {
         Navigation.PushModalAsync(new MyCourses());
@@ -43,12 +61,31 @@ public partial class CourseSearch : ContentPage
 
     void ToCourseDescription(System.Object sender, System.EventArgs e)
     {
-        var courseDescrPage = new CourseDescr();
-        Navigation.PushAsync(courseDescrPage);
+        Grid grid = (Grid)sender;
+        string id = grid.AutomationId;
+        Course course = new Course();
+        for(int i = 0; i < courses.Count; i++)
+        {
+            if(id == courses[i].Id)
+            {
+                course = courses[i];
+                break;
+            }
+        }
+        var courseDescrPage = new CourseDescr(course);
+        Navigation.PushModalAsync(courseDescrPage);
     }
 
-    //Parameters is Course
-    public static Grid MakeCourseCard()
+   async Task<List<Course>> GetCourses()
+    {
+        var httpResponse = await MainPage._client.GetAsync($"{MainPage.BaseAddress}/api/courses/all");
+        var responseData = JsonConvert.DeserializeObject<Response<List<Course>>>(await httpResponse.Content.ReadAsStringAsync());
+        var list = responseData.Content;
+        courses = list;
+        return list;
+    }
+
+    public static Grid MakeCourseCard(Course course)
     {
         var CardGrid = new Grid
         {
@@ -101,7 +138,7 @@ public partial class CourseSearch : ContentPage
 
         var CourseName = new Label
         {
-            Text = "C# for everyone",
+            Text = course.Name,
             TextColor = Color.FromHex("#3D6D79"),
             FontAttributes = FontAttributes.Bold,
             FontFamily = "Jost",
@@ -111,7 +148,7 @@ public partial class CourseSearch : ContentPage
      
         var ByOrganization = new Label
         {
-            Text = "by NURE",
+            Text = "by " + course.Lecturer.Organization.Name,
             Margin = new Thickness(0, 4, 0, 0),
             TextColor = Color.FromHex("#8C8D8D"),
             FontAttributes = FontAttributes.Bold,
@@ -121,7 +158,7 @@ public partial class CourseSearch : ContentPage
 
         var CourseTopic = new Label
         {
-            Text = "Programming",
+            Text = course.Topic.ToString(),
             Margin = new Thickness(0, 4, 0, 0),
             TextColor = Color.FromHex("#3D6D79"),
             FontSize = 15,
@@ -142,14 +179,14 @@ public partial class CourseSearch : ContentPage
 
         var CourseModules = new Label
         {
-            Text = "12 modules",
+            Text = course.Modules.Count+ " modules",
             TextColor = Color.FromHex("#3D6D79"),
             FontFamily = "Jost"
         };
 
         var CoursePrice = new Label
         {
-            Text = "20$",
+            Text = course.Price.ToString()+ "$",
             TextColor = Color.FromHex("#3D6D79"),
             Margin = new Thickness(0, 10, 10, 0),
             FontAttributes = FontAttributes.Bold,

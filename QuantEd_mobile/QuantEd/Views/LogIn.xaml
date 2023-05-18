@@ -95,6 +95,8 @@
                         Placeholder="Password"
                         Style="{StaticResource textFieldStyle}"
                         FontSize="18"
+                        IsPassword="True"      
+                        ClearButtonVisibility="WhileEditing"      
                      />
                     </Border>
 

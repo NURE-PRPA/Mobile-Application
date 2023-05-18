@@ -1,31 +1,18 @@
-﻿namespace QuantEd.Views;
+﻿using Core.Models;
+using Newtonsoft.Json;
+using Nito.AsyncEx;
+using WebAPI.Response.Models;
+
+namespace QuantEd.Views;
 
 public partial class MyCourses : ContentPage
 {
-	public MyCourses()
+    List<Course> courses;
+    public MyCourses()
 	{
 		InitializeComponent();
-        var label = new Label
-        {
-            Text = "My Courses",
-            TextColor = Color.FromHex("#3D6D79"),
-            FontAttributes = FontAttributes.Bold,
-            FontFamily = "Jost",
-            HorizontalTextAlignment = TextAlignment.Center,
-            FontSize = 24,
-            Margin = new Thickness(0, 10, 0, 0)
-        };
-        ScrollView scroll = (ScrollView)FindByName("CoursesList");
-        StackLayout pairList = new StackLayout();
-        pairList.Add(label);
-        for(int i = 0;i<4; i++)
-        {
-            Grid card = CourseSearch.MakeCourseCard();
-            card = CourseSearch.MakeCourseCard();
-            pairList.Add(card);
-        }
-        scroll.Content = pairList;
-
+        
+        AsyncContext.Run(() => FillCards());
 	}
 
     void ViewAccount(System.Object sender, System.EventArgs e)
@@ -42,5 +29,57 @@ public partial class MyCourses : ContentPage
     {
         MainPage_LogIn.GoToRoot(this.Navigation);
        // Navigation.PopModalAsync();
+    }
+
+    async void FillCards()
+    {
+        var label = new Label
+        {
+            Text = "My Courses",
+            TextColor = Color.FromHex("#3D6D79"),
+            FontAttributes = FontAttributes.Bold,
+            FontFamily = "Jost",
+            HorizontalTextAlignment = TextAlignment.Center,
+            FontSize = 24,
+            Margin = new Thickness(0, 10, 0, 0)
+        };
+        ScrollView scroll = (ScrollView)FindByName("CoursesList");
+        StackLayout pairList = new StackLayout();
+        pairList.Add(label);
+        var coursesList = await GetCourses();
+        for (int i = 0; i < coursesList.Count; i++)
+        {
+            Grid card = CourseSearch.MakeCourseCard(coursesList[i]);
+            card.AutomationId = coursesList[i].Id;
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += ToCourseDescription;
+            card.GestureRecognizers.Add(tapGesture);
+            pairList.Add(card);
+        }
+        scroll.Content = pairList;
+    }
+    async Task<List<Course>> GetCourses()
+    {
+        var httpResponse = await MainPage._client.GetAsync($"{MainPage.BaseAddress}/api/courses/my");
+        var responseData = JsonConvert.DeserializeObject<Response<List<Course>>>(await httpResponse.Content.ReadAsStringAsync());
+        var list = responseData.Content;
+        courses = list;
+        return list;
+    }
+    void ToCourseDescription(System.Object sender, System.EventArgs e)
+    {
+        Grid grid = (Grid)sender;
+        string id = grid.AutomationId;
+        Course course = new Course();
+        for (int i = 0; i < courses.Count; i++)
+        {
+            if (id == courses[i].Id)
+            {
+                course = courses[i];
+                break;
+            }
+        }
+        var courseDescrPage = new CourseDescr(course);
+        Navigation.PushModalAsync(courseDescrPage);
     }
 }

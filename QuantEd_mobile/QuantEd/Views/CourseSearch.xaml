@@ -39,7 +39,7 @@
             Style="{StaticResource buttonStyle}"
             HorizontalOptions="EndAndExpand"
          />
-             <Button
+             <Button x:Name="account"
             Grid.Column="3"
             Text="Account"
             Style="{StaticResource buttonStyle}"
@@ -62,22 +62,23 @@
             VerticalOptions="Center"
             Margin="25,0,0,0"
          />
-        <Border Margin="0,0,25,0" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="2" HeightRequest="45" WidthRequest="130" HorizontalOptions="End" BackgroundColor="#White"> 
+        <Border Margin="0,0,25,0" Grid.Row="1" Stroke="#3D6D79" StrokeThickness="2" HeightRequest="45" WidthRequest="130" HorizontalOptions="End" BackgroundColor="White"> 
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
                         </Border.StrokeShape>
-        <Button
+        <Button x:Name="myCourses"
             Padding="0,-10"
             Text="My Courses"
             HorizontalOptions="Fill"
             VerticalOptions="Fill"
             TextColor="#3D6D79"
             FontAttributes="Bold"
+            BackgroundColor="White"
             FontSize="14"
             Clicked="ToMyCourses"
             />
             </Border>
-        <Grid Grid.Row="2" RowSpacing="12" BackgroundColor="#F5F7F4" >
+        <Grid Grid.Row="2" RowSpacing="12"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                  <RowDefinition Height="1*"/>
@@ -121,17 +122,17 @@
                             <Picker  x:Name="topicPicker" Title = "Topic" BackgroundColor="#F5F7F4" TextColor="#3D6D79">
                           </Picker>
                         </Border>
-            <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="#F5F7F4"/>
-            <Border  Margin="0,0,35,10" Grid.Row="1" Grid.Column="1" Stroke="#F5F7F4" StrokeThickness="1.5" HeightRequest="40"> 
+           
+            <Border  Margin="0,0,35,10" Grid.Row="1" Grid.Column="1"  StrokeThickness="1.5" HeightRequest="40"> 
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
                         </Border.StrokeShape>
-                <StackLayout Margin="0,10,0,0" BackgroundColor="#F5F7F4">
+                <StackLayout Margin="0,10,0,0">
                             <Slider Minimum ="0" Maximum="50" Value="30"  
                                     MinimumTrackColor="#3E6E7A"
                                     MaximumTrackColor="#3E7A61"
                                     ThumbColor="#3E6E7A" 
-                                    BackgroundColor ="#F5F7F4"/>
+                                    />
                             <StackLayout Orientation="Horizontal" Margin="0,-10,0,0" Spacing="120">
                             <Label Text="0" HorizontalOptions="Start" TextColor="#3E6E7A" />
                              <Label Text="100" HorizontalOptions="End" TextColor="#3E7A61"/>

@@ -14,7 +14,7 @@ public partial class MainPage : ContentPage
     public static HttpClient _client = new HttpClient();
     public static string BaseAddress =
       DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5233" : "http://localhost:5233";
-   
+    public static bool isAuthorized = false;
     public MainPage()
 	{
 		InitializeComponent();
@@ -30,28 +30,8 @@ public partial class MainPage : ContentPage
     public static async void MainAsync()
     {
 
-        var hostEntry = Dns.GetHostEntry("localhost");
-        var ipAddress = hostEntry.AddressList.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
 
-        var user = new LoginUser()
-        {
-            Email = "anastasiia.lulakova@nure.ua",
-            Password = "1234",
-            UserType = "listener"
-        };
-
-        var content1 = JsonConvert.SerializeObject(user);
-        StringContent content = new StringContent(content1, Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync($"{BaseAddress}/api/auth/login", content);
-        var responseData1 = JsonConvert.DeserializeObject<Response<object>>(await response.Content.ReadAsStringAsync());
-
-
-
-
-        var httpResponse = await _client.GetAsync($"{BaseAddress}/api/courses/all");
-    
-     var responseData = JsonConvert.DeserializeObject<Response<List<Course>>>(await httpResponse.Content.ReadAsStringAsync());
-     var courses = responseData.Content;
+       
 
         //var httpResponse = await _Client.GetAsync(url);
 
@@ -63,6 +43,12 @@ public partial class MainPage : ContentPage
     private void GoToLogIn(object sender, EventArgs e)
     {
         Navigation.PushModalAsync(new LogIn());
+    }
+
+    private void ViewCoursesLogOut(object sender, EventArgs e)
+    {
+        MainPage.isAuthorized = false;
+        Navigation.PushModalAsync(new CourseSearch());
     }
 }
 
