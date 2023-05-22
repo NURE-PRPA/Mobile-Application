@@ -5,25 +5,42 @@ using Newtonsoft.Json;
 using Core.Models;
 using WebAPI.Response.Models;
 using Nito.AsyncEx;
+using System;
+using Core.Enums;
 
 namespace QuantEd.Views;
 
 public partial class CourseSearch : ContentPage
 {
     List<Course> courses;
+    public static bool isMine = false;
+
     public CourseSearch()
     {
 		InitializeComponent();
+        isMine = false;
         AsyncContext.Run(() => FillCards());
         Button acc = (Button)FindByName("account");
         Button mycourses = (Button)FindByName("myCourses");
+        Border bord = (Border)FindByName("myCoursBord");
         if (!MainPage.isAuthorized)
         {
             acc.Text = "Log In";
             myCourses.IsEnabled = false;
             myCourses.IsVisible = false;
+            bord.IsVisible = false;
         }
-
+        Picker pick = (Picker)FindByName("topicPicker");
+        var enumValues = Enum.GetValues(typeof(CourseTopic)).Cast<CourseTopic>().ToList();
+        pick.ItemsSource = enumValues;
+        Picker picklevel = (Picker)FindByName("levelPicker");
+        var enumlevels = Enum.GetValues(typeof(CourseDifficulty)).Cast<CourseDifficulty>().ToList();
+        picklevel.ItemsSource = enumlevels;
+        Slider slider = (Slider)FindByName("priceSlider");
+        int maxPr = GetMaxPrice();
+        slider.Maximum = maxPr;
+        Label max = (Label)FindByName("max");
+        max.Text = maxPr.ToString();
     }
 
     async void FillCards()
@@ -38,13 +55,15 @@ public partial class CourseSearch : ContentPage
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += ToCourseDescription;
             card.GestureRecognizers.Add(tapGesture);
-            CourseStack.Add(card);
+            CourseStack.Children.Add(card);
         }
-        ScrollView scrollView = new ScrollView { Margin = new Thickness(0, 10, 0, 40), Content = CourseStack };
-        grid.Add(scrollView, 0, 3);
+        ScrollView scrollView = (ScrollView)FindByName("cardList");
+        scrollView.Content = CourseStack;
+       
     }
     void ToMyCourses(System.Object sender, System.EventArgs e)
     {
+        isMine = true;
         Navigation.PushModalAsync(new MyCourses());
     }
 
@@ -85,6 +104,19 @@ public partial class CourseSearch : ContentPage
         return list;
     }
 
+    int GetMaxPrice()
+    {
+        List<int> price = new List<int>();
+        int max = 0;
+        for(int i = 0; i < courses.Count; i++)
+        {
+            if (courses[i].Price > max)
+            {
+                max = courses[i].Price;
+            }
+        }
+        return max;
+    }
     public static Grid MakeCourseCard(Course course)
     {
         var CardGrid = new Grid
@@ -203,5 +235,64 @@ public partial class CourseSearch : ContentPage
         return CardGrid;
     }
 
-    
+    void Sort()
+    {
+        List<Course> list = new List<Course>();
+        list = courses;
+        Picker picker = (Picker)FindByName("topicPicker");
+        string topic = null;
+        if(picker.SelectedItem != null)
+        {
+            topic = picker.SelectedItem.ToString();
+        }
+        picker = (Picker)FindByName("levelPicker");
+        string level = null;
+        if (picker.SelectedItem != null)
+        {
+            level = picker.SelectedItem.ToString();
+        }
+        for(int i = 0; i< list.Count; i++)
+        {
+            if(topic != null)
+            {
+                
+                if (list[i].Topic.ToString() != topic) {
+                list.RemoveAt(i);
+                    i--;
+                }
+            }
+            if (level != null)
+            {
+                if (list[i].Difficulty.ToString() != level)
+                {
+                    list.RemoveAt(i);
+                }
+            }
+        }
+        FillCardsFromList(list);
+    }
+
+    async void FillCardsFromList(List<Course> list)
+    {
+        Grid grid = (Grid)FindByName("Courses");
+        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0, 40) };
+        for (int i = 0; i < list.Count; i++)
+        {
+            Grid card = MakeCourseCard(list[i]);
+            card.AutomationId = list[i].Id;
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += ToCourseDescription;
+            card.GestureRecognizers.Add(tapGesture);
+            CourseStack.Add(card);
+        }
+        ScrollView scrollView = (ScrollView)FindByName("cardList");
+        scrollView.Content = null;
+        scrollView.Content = CourseStack;
+        
+    }
+
+    private void button_Sort(object sender, EventArgs e)
+    {
+        Sort();
+    }
 }

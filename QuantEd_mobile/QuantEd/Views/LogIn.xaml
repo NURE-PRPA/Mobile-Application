@@ -81,6 +81,7 @@
                         <Entry x:Name="email"
                         Grid.Row="1"
                         Placeholder="Email"
+                        VerticalTextAlignment="End"
                         Style="{StaticResource textFieldStyle}"
                         FontSize="18"
                         />

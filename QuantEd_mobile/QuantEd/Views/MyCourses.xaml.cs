@@ -46,7 +46,7 @@ public partial class MyCourses : ContentPage
         ScrollView scroll = (ScrollView)FindByName("CoursesList");
         StackLayout pairList = new StackLayout();
         pairList.Add(label);
-        var coursesList = await GetCourses();
+        var coursesList = await GetMyCourses();
         for (int i = 0; i < coursesList.Count; i++)
         {
             Grid card = CourseSearch.MakeCourseCard(coursesList[i]);
@@ -58,7 +58,7 @@ public partial class MyCourses : ContentPage
         }
         scroll.Content = pairList;
     }
-    async Task<List<Course>> GetCourses()
+    async Task<List<Course>> GetMyCourses()
     {
         var httpResponse = await MainPage._client.GetAsync($"{MainPage.BaseAddress}/api/courses/my");
         var responseData = JsonConvert.DeserializeObject<Response<List<Course>>>(await httpResponse.Content.ReadAsStringAsync());
