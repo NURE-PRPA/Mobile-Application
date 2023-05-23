@@ -16,6 +16,7 @@
                 
                 Source="logo_light.png"
                 HeightRequest="45"
+                Margin="10,0,0,0"
                Clicked="ToMainPageLogged"
              />
 
@@ -133,9 +134,11 @@
                             <Line Y2="55" Stroke="#3D6D79"/>
                             <Button
                                 Text="S"
-                                FontSize="25"
+                                FontSize="20"
                                 TextColor="#3D6D79"
                                 FontAttributes="Bold"
+                                Margin="0,0,0,0"
+                                BackgroundColor="#F5F7F4"
                                 Clicked="SeePassword"
                                 />
                             </StackLayout>
@@ -184,11 +187,11 @@
                         Grid.Row="7"
                         Text="Change Info"
                         TextColor="#FBE7D2"
-                        FontSize="22"
+                        FontSize="20"
                         FontAttributes="Bold"
                         HorizontalOptions="Center"
                         WidthRequest="160"
-                        HeightRequest="40"
+                        HeightRequest="50"
                         CornerRadius="5"
                         
                     />

@@ -33,7 +33,17 @@
         <BoxView Grid.Row="3" BackgroundColor="White" CornerRadius="5" Margin="10,5,10,5"/>
         <StackLayout Grid.Row="3">
             <Label Text="Materials" TextColor="#3D6D79" Margin="20,10,10,0" FontFamily="Jost" FontAttributes="Bold" FontSize="15" />
-            <HorizontalStackLayout x:Name="materials"></HorizontalStackLayout>
+            <HorizontalStackLayout x:Name="materials"  Margin="20" >
+                <Border  Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="70"  WidthRequest="110">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="Material1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="pdf" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Border>
+            </HorizontalStackLayout>
         </StackLayout>
         <BoxView Grid.Row="4" BackgroundColor="White" CornerRadius="5" Margin="10,5,10,5"/>
         <StackLayout Grid.Row="4">

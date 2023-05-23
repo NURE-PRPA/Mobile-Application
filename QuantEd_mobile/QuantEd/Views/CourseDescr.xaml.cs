@@ -28,11 +28,20 @@ public partial class CourseDescr : ContentPage
             lb = (Label)FindByName("modules");
             lb.Text = course.Modules.Count.ToString()+ " modules";
             lb = (Label)FindByName("price");
-            lb.Text = course.Price + " $";
+            bool my = CourseSearch.isMine;
+            if (my)
+            {
+                lb.Text = "";
+            }
+            else
+            {
+                lb.Text = course.Price + " $";
+            }
+          
             lb = (Label)FindByName("description");
             lb.Text = course.Description;
             TableSection table = (TableSection)FindByName("modulesList");
-            bool my = CourseSearch.isMine;
+            
             for(int i = course.Modules.Count - 1; i>=0 ; i--)
             {
                 TextCell cell = new TextCell();

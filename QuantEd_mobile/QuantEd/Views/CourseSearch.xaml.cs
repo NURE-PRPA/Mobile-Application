@@ -69,12 +69,28 @@ public partial class CourseSearch : ContentPage
 
     void ViewAccount(System.Object sender, System.EventArgs e)
     {
-		Navigation.PushModalAsync(new AccountView());
+        if (MainPage.isAuthorized == false)
+        {
+            Navigation.PushModalAsync(new LogIn());
+        }
+        else
+        {
+            Navigation.PushModalAsync(new AccountView());
+        }
     }
 
     void ToMainPageLogged(System.Object sender, System.EventArgs e)
     {
-        MainPage_LogIn.GoToRoot(Navigation);
+        //MainPage_LogIn.GoToRoot(Navigation);
+        if(MainPage.isAuthorized == false)
+        {
+            // MainPage_LogIn.GoToRoot<MainPage>(Navigation);
+            Navigation.PushModalAsync(new MainPage());
+        }
+        else
+        {
+            Navigation.PushModalAsync(new MainPage_LogIn());
+        }
        
     }
 
@@ -288,7 +304,7 @@ public partial class CourseSearch : ContentPage
         ScrollView scrollView = (ScrollView)FindByName("cardList");
         scrollView.Content = null;
         scrollView.Content = CourseStack;
-        
+        this.InvalidateMeasure();
     }
 
     private void button_Sort(object sender, EventArgs e)

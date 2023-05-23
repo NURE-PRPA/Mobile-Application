@@ -14,7 +14,8 @@ public partial class LogIn : ContentPage
 
     void ToMainPage(System.Object sender, System.EventArgs e)
     {
-        Navigation.PopModalAsync();
+        //MainPage_LogIn.GoToRoot<MainPage>(Navigation);
+        Navigation.PushModalAsync(new MainPage());
     }
 
     async void ToMainLog(System.Object sender, System.EventArgs e)
@@ -42,5 +43,16 @@ public partial class LogIn : ContentPage
             await DisplayAlert("Error", "Log In failed", "OK");
             ToMainPage(sender, e);
         }
+    }
+
+    private void ToCourses(object sender, EventArgs e)
+    {
+        Navigation.PushModalAsync(new CourseSearch());
+    }
+
+    private void SignUp(object sender, EventArgs e)
+    {
+        Navigation.PushModalAsync(new Registration());
+
     }
 }

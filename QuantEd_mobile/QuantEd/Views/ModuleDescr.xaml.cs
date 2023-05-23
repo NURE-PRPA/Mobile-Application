@@ -11,11 +11,13 @@ public partial class ModuleDescr : ContentPage
 	public static UserAttempt attempt;
 	public static Core.Models.Test test;
 	int max = 0;
+	bool was = false;
 	public ModuleDescr(CourseModule module)
 	{
 		InitializeComponent();
 		this.module = module;
         FillPage();
+		attempt = new UserAttempt();
 		if (module.Test != null)
 		{
 			AsyncContext.Run(() => GetTest(module.Test.Id));
@@ -27,17 +29,29 @@ public partial class ModuleDescr : ContentPage
 				attempt = test.UserAttempts[0];
 
             }
-        }
-		
-        Label label = (Label)FindByName("markLabel");
 
-        if (attempt == null)
-        {
-            label.Text = $"0/{max}";
+            Label label = (Label)FindByName("markLabel");
+
+            if (attempt == null)
+            {
+                label.Text = $"0/{max}";
+            }
+            else if (test.Questions.Count == 0)
+            {
+                label.Text = "0/0";
+            }
+            else
+            {
+                label.Text = $"{attempt.Mark}/{max}";
+            }
         }
-        else
-        {
-            label.Text = $"{attempt.Mark}/{max}";
+		else
+		{
+            if (module.Test == null)
+            {
+                Label label2 = (Label)FindByName("markLabel");
+                label2.Text = "0/0";
+            }
         }
     }
 
@@ -61,6 +75,8 @@ public partial class ModuleDescr : ContentPage
             label.Text = "0 questions";
 			btn.IsEnabled = false;
 			btn.IsVisible = false;
+            Label label2 = (Label)FindByName("markLabel");
+			label2.Text = "0/0";
         }
 
     }
@@ -119,9 +135,13 @@ public partial class ModuleDescr : ContentPage
         {
             label.Text = $"0/{max}";
         }
-        else
+		else if( test == null || test.Questions.Count == 0)
+		{
+            label.Text = "0/0";
+        }
+        else if(test.Questions.Count >= 1)
         {
-            label.Text = $"{attempt.Mark}/{max}";
+            label.Text = $"{ModuleDescr.test.UserAttempts[0].Mark}/{max}";
         }
     }
 }

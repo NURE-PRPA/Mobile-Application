@@ -27,8 +27,8 @@ public partial class MyCourses : ContentPage
 
     void ToMainLogged(System.Object sender, System.EventArgs e)
     {
-        MainPage_LogIn.GoToRoot(this.Navigation);
-       // Navigation.PopModalAsync();
+        //MainPage_LogIn.GoToRoot<MainPage_LogIn>(this.Navigation);
+       Navigation.PushModalAsync(new MainPage_LogIn());
     }
 
     async void FillCards()

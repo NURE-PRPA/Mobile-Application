@@ -22,8 +22,8 @@ public partial class AccountView : ContentPage
 
     void ToMainPageLogged(System.Object sender, System.EventArgs e)
     {
-        MainPage_LogIn.GoToRoot(Navigation);
-        //Navigation.PopModalAsync();
+        //MainPage_LogIn.GoToRoot<MainPage_LogIn>(Navigation);
+        Navigation.PushModalAsync(new MainPage_LogIn());
     }
 
     //async Task<List<Course>> GetCourses()

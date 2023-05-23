@@ -19,6 +19,7 @@
                 IsEnabled="False"
                 Source="logo_light.png"
                 HeightRequest="45"
+                Margin="15,0,0,0"
                />
 
         <Button

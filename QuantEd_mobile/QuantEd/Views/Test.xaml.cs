@@ -204,7 +204,7 @@ public partial class Test : ContentPage
         var responseData1 = JsonConvert.DeserializeObject<Response<object>>(await response.Content.ReadAsStringAsync());
         if (responseData1.Messages[0]== "Attempt added successfully")
         {
-            ModuleDescr.attempt.Mark = res.Mark;
+            ModuleDescr.test.UserAttempts[0].Mark = res.Mark;
             await DisplayAlert("Test", "Your answer was saved", "Ok");
              await Navigation.PopAsync();
         }

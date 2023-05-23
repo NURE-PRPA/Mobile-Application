@@ -24,14 +24,14 @@ public partial class MainPage_LogIn : ContentPage
 
     
 
-    public static void GoToRoot(INavigation navigation)
+    public static void GoToRoot<TPage>(INavigation navigation) where TPage : Page
     {
         int pageCount = navigation.ModalStack.Count;
         Page page1 = navigation.ModalStack[0];
        
         for (int i = pageCount - 1; i >= 0; i--)
         {
-            if (navigation.ModalStack[i] is MainPage_LogIn page)
+            if (navigation.ModalStack[i] is TPage)
             {
                 page1 = navigation.ModalStack[i];
             }

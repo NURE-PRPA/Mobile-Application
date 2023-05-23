@@ -9,11 +9,26 @@ public partial class Registration : ContentPage
 
     void ToMainPage(System.Object sender, System.EventArgs e)
     {
-		Navigation.PopModalAsync();
+       // MainPage_LogIn.GoToRoot<MainPage>(Navigation);
+       Navigation.PushModalAsync(new MainPage());
     }
 
+
+    //if sign up is successfull
     void ToMainLog(System.Object sender, System.EventArgs e)
     {
-        Navigation.PushModalAsync(new MainPage_LogIn());
+       // Navigation.PushModalAsync(new MainPage_LogIn());
+       // MainPage.isAuthorized = true;
+    }
+
+    private void ToCourses(object sender, EventArgs e)
+    {
+        Navigation.PushModalAsync(new CourseSearch());
+    }
+
+    private void SignUp(object sender, EventArgs e)
+    {
+        Navigation.PushModalAsync(new Registration());
+
     }
 }

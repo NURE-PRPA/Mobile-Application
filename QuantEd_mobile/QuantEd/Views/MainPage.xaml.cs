@@ -18,8 +18,6 @@ public partial class MainPage : ContentPage
     public MainPage()
 	{
 		InitializeComponent();
-
-      //  AsyncContext.Run(() => MainAsync());
     }
 
 	private void Register(object sender, EventArgs e)
@@ -27,18 +25,6 @@ public partial class MainPage : ContentPage
 		 Navigation.PushModalAsync(new Registration());
 	}
 
-    public static async void MainAsync()
-    {
-
-
-       
-
-        //var httpResponse = await _Client.GetAsync(url);
-
-        //var responseData = JsonConvert.DeserializeObject<Response<List<Course>>>(await httpResponse.Content.ReadAsStringAsync());
-        //var courses = responseData.Content;
-        //User_List.ItemsSource = userCollection;
-    }
 
     private void GoToLogIn(object sender, EventArgs e)
     {
