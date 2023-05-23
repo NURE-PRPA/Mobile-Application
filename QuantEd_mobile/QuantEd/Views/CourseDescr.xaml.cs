@@ -33,7 +33,7 @@ public partial class CourseDescr : ContentPage
             lb.Text = course.Description;
             TableSection table = (TableSection)FindByName("modulesList");
             bool my = CourseSearch.isMine;
-            for(int i = 0; i< course.Modules.Count; i++)
+            for(int i = course.Modules.Count - 1; i>=0 ; i--)
             {
                 TextCell cell = new TextCell();
                 cell.Text = course.Modules[i].Name;
@@ -55,10 +55,10 @@ public partial class CourseDescr : ContentPage
     {
         TextCell cell = (TextCell)sender;
         string modId = cell.AutomationId.ToString();
-        foreach(CourseModule mod in detailedCourse.Modules) {
-            if(mod.Id == modId)
+        for(int i = 0; i < detailedCourse.Modules.Count; i++) {
+            if (detailedCourse.Modules[i].Id == modId)
             {
-                Navigation.PushModalAsync(new ModuleDescr(mod));
+                Navigation.PushModalAsync(new ModuleDescr(detailedCourse.Modules[i]));
             }
         }
        

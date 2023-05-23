@@ -20,6 +20,7 @@
                 HorizontalOptions="Center"
                 HeightRequest="70"
                 WidthRequest="200"
+                Clicked="testEnd_Clicked"
         />
     </VerticalStackLayout>
 </ContentPage>
