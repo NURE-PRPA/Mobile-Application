@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuantEd.Views.ModuleDescr"
+             Title="ModuleDescr"
+             NavigatingFrom="ContentPage_NavigatingFrom">
+    <Grid Grid.Row="1" HeightRequest="780">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1.5*" />
+        </Grid.RowDefinitions>
+        <BoxView Grid.RowSpan="6" BackgroundColor="#DBF1F5" Margin="0"/>
+
+        <Label x:Name ="name" Grid.Row="0" Text="Module name" TextColor="#3D6D79" HorizontalOptions="Center" VerticalOptions="Center"  FontAttributes="Bold" FontFamily="Jost" FontSize="25"/>
+        
+        <BoxView Grid.Row="1" BackgroundColor="White" CornerRadius="5" Margin="10,5,10,5"/>
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="30,5,10,5">
+            <Label Text="Your result: "   TextColor="#3D6D79"  Margin="20,35,10,0" FontFamily="Jost" FontAttributes="Bold" FontSize="25" />
+            <Label Text="0/0"  x:Name="markLabel" TextColor="#3D6D79"  Margin="100,35,10,0" FontFamily="Jost" FontAttributes="Bold" FontSize="25" />
+
+        </StackLayout>
+
+        <BoxView Grid.Row="2" BackgroundColor="White" CornerRadius="5" Margin="10,5,10,5"/>
+        <StackLayout Grid.Row="2">
+            <Label Text="Description"   TextColor="#3D6D79" Margin="20,10,10,0" FontFamily="Jost" FontAttributes="Bold" FontSize="15" />
+            <Label x:Name="description" Text="Description"   TextColor="#3D6D79" Margin="20,10,10,0" FontFamily="Jost" FontSize="15" />
+        </StackLayout>
+
+        <BoxView Grid.Row="3" BackgroundColor="White" CornerRadius="5" Margin="10,5,10,5"/>
+        <StackLayout Grid.Row="3">
+            <Label Text="Materials" TextColor="#3D6D79" Margin="20,10,10,0" FontFamily="Jost" FontAttributes="Bold" FontSize="15" />
+            <HorizontalStackLayout x:Name="materials"  Margin="20" >
+                <Border  Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="70"  WidthRequest="110">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="Material1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="pdf" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Border>
+            </HorizontalStackLayout>
+        </StackLayout>
+        <BoxView Grid.Row="4" BackgroundColor="White" CornerRadius="5" Margin="10,5,10,5"/>
+        <StackLayout Grid.Row="4">
+            <Label Text="Test" TextColor="#3D6D79" Margin="20,10,10,0" FontFamily="Jost" FontAttributes="Bold" FontSize="15" />
+            <HorizontalStackLayout  Margin="20" >
+                <Border  Stroke="#3D6D79" StrokeThickness="1.5" HeightRequest="70"  WidthRequest="110">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="Test" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text=" 0 questions" x:Name="questNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Border>
+            </HorizontalStackLayout>
+        </StackLayout>
+
+        <Button x:Name="testStart"
+            Style="{StaticResource mainButtonStyle}"
+                Grid.Row="5"
+                Text="Start test"
+                TextColor="#FBE7D2"
+                FontSize="25"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                HeightRequest="70"
+                WidthRequest="200"
+                Clicked="testStart_Clicked"
+        />
+    </Grid>
+</ContentPage>

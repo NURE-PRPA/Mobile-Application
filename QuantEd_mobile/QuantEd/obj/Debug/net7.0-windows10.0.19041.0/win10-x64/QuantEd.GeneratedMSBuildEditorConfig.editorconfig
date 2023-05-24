@@ -1,0 +1,95 @@
+is_global = true
+build_property.TargetFramework = net7.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.17763.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = QuantEd
+build_property.ProjectDir = C:\Users\lulak\source\repos\Mobile-Application\QuantEd_mobile\QuantEd\
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/AccountView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.AccountView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AccountView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AccountView.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/CourseDescr.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.CourseDescr.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CourseDescr.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CourseDescr.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/CourseSearch.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.CourseSearch.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CourseSearch.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CourseSearch.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/LogIn.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.LogIn.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LogIn.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LogIn.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MainPage.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/MainPage_LogIn.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.MainPage_LogIn.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MainPage_LogIn.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MainPage_LogIn.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/ModuleDescr.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.ModuleDescr.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ModuleDescr.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ModuleDescr.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/MyCourses.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.MyCourses.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MyCourses.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MyCourses.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/Registration.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.Registration.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Registration.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Registration.xaml
+
+[C:/Users/lulak/source/repos/Mobile-Application/QuantEd_mobile/QuantEd/Views/Test.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = QuantEd.Views.Test.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Test.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Test.xaml

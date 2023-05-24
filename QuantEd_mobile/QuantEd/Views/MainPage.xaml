@@ -19,6 +19,7 @@
                 IsEnabled="False"
                 Source="logo_light.png"
                 HeightRequest="45"
+                Margin="15,0,0,0"
                />
 
         <Button
@@ -32,12 +33,14 @@
             Text="Explore"
             Style="{StaticResource buttonStyle}"
             HorizontalOptions="EndAndExpand"
+            Clicked="ViewCoursesLogOut"
          />
              <Button
             Grid.Column="3"
             Text="Log In"
             Style="{StaticResource buttonStyle}"
             HorizontalOptions="CenterAndExpand"
+                 Clicked="GoToLogIn"
          />
            </Grid>
          <BoxView Grid.Row="1" Color="#DBF1F5"/>

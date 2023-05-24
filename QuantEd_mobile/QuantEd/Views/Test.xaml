@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuantEd.Views.Test"
+             Title="Test"
+             >
+    <VerticalStackLayout BackgroundColor="#DBF1F5">
+        <ScrollView Margin="15">
+            <StackLayout x:Name="questions" >
+               
+            </StackLayout>
+    </ScrollView>
+        <Button x:Name="testEnd"
+            Style="{StaticResource mainButtonStyle}"
+                Grid.Row="5"
+                Text="End test"
+                TextColor="#FBE7D2"
+                FontSize="25"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                HeightRequest="70"
+                WidthRequest="200"
+                Clicked="testEnd_Clicked"
+        />
+    </VerticalStackLayout>
+</ContentPage>

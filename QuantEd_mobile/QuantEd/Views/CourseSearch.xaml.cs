@@ -1,54 +1,139 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Controls.Internals;
+using Newtonsoft.Json;
+//using Windows.Media.Protection.PlayReady;
+using Core.Models;
+using WebAPI.Response.Models;
+using Nito.AsyncEx;
+using System;
+using Core.Enums;
 
 namespace QuantEd.Views;
 
 public partial class CourseSearch : ContentPage
 {
-	public CourseSearch()
-	{
+    List<Course> courses;
+    public static bool isMine = false;
+
+    public CourseSearch()
+    {
 		InitializeComponent();
-      
-        Grid grid = (Grid)FindByName("Courses");
-        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0, 0) };
-        for (int i = 0; i< 2; i++)
+        isMine = false;
+        AsyncContext.Run(() => FillCards());
+        Button acc = (Button)FindByName("account");
+        Button mycourses = (Button)FindByName("myCourses");
+        Border bord = (Border)FindByName("myCoursBord");
+        if (!MainPage.isAuthorized)
         {
-            Grid card = MakeCourseCard();
-            card.AutomationId = "i";
+            acc.Text = "Log In";
+            myCourses.IsEnabled = false;
+            myCourses.IsVisible = false;
+            bord.IsVisible = false;
+        }
+        Picker pick = (Picker)FindByName("topicPicker");
+        var enumValues = Enum.GetValues(typeof(CourseTopic)).Cast<CourseTopic>().ToList();
+        pick.ItemsSource = enumValues;
+        Picker picklevel = (Picker)FindByName("levelPicker");
+        var enumlevels = Enum.GetValues(typeof(CourseDifficulty)).Cast<CourseDifficulty>().ToList();
+        picklevel.ItemsSource = enumlevels;
+        Slider slider = (Slider)FindByName("priceSlider");
+        int maxPr = GetMaxPrice();
+        slider.Maximum = maxPr;
+        Label max = (Label)FindByName("max");
+        max.Text = maxPr.ToString();
+    }
+
+    async void FillCards()
+    {
+        var coursesList = await GetCourses();
+        Grid grid = (Grid)FindByName("Courses");
+        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0, 40) };
+        for (int i = 0; i < coursesList.Count; i++)
+        {
+            Grid card = MakeCourseCard(coursesList[i]);
+            card.AutomationId = coursesList[i].Id;
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += ToCourseDescription;
             card.GestureRecognizers.Add(tapGesture);
-            CourseStack.Add(card);
+            CourseStack.Children.Add(card);
         }
-        ScrollView scrollView = new ScrollView { Margin = new Thickness(0, 20, 0, 0), Content = CourseStack};
-        grid.Add(scrollView, 0, 3);
+        ScrollView scrollView = (ScrollView)FindByName("cardList");
+        scrollView.Content = CourseStack;
        
     }
-
     void ToMyCourses(System.Object sender, System.EventArgs e)
     {
+        isMine = true;
         Navigation.PushModalAsync(new MyCourses());
     }
 
     void ViewAccount(System.Object sender, System.EventArgs e)
     {
-		Navigation.PushModalAsync(new AccountView());
+        if (MainPage.isAuthorized == false)
+        {
+            Navigation.PushModalAsync(new LogIn());
+        }
+        else
+        {
+            Navigation.PushModalAsync(new AccountView());
+        }
     }
 
     void ToMainPageLogged(System.Object sender, System.EventArgs e)
     {
-        MainPage_LogIn.GoToRoot(Navigation);
+        //MainPage_LogIn.GoToRoot(Navigation);
+        if(MainPage.isAuthorized == false)
+        {
+            // MainPage_LogIn.GoToRoot<MainPage>(Navigation);
+            Navigation.PushModalAsync(new MainPage());
+        }
+        else
+        {
+            Navigation.PushModalAsync(new MainPage_LogIn());
+        }
        
     }
 
     void ToCourseDescription(System.Object sender, System.EventArgs e)
     {
-        var courseDescrPage = new CourseDescr();
-        Navigation.PushAsync(courseDescrPage);
+        Grid grid = (Grid)sender;
+        string id = grid.AutomationId;
+        Course course = new Course();
+        for(int i = 0; i < courses.Count; i++)
+        {
+            if(id == courses[i].Id)
+            {
+                course = courses[i];
+                break;
+            }
+        }
+        var courseDescrPage = new CourseDescr(course);
+        Navigation.PushModalAsync(courseDescrPage);
     }
 
-    //Parameters is Course
-    public static Grid MakeCourseCard()
+   async Task<List<Course>> GetCourses()
+    {
+        var httpResponse = await MainPage._client.GetAsync($"{MainPage.BaseAddress}/api/courses/all");
+        var responseData = JsonConvert.DeserializeObject<Response<List<Course>>>(await httpResponse.Content.ReadAsStringAsync());
+        var list = responseData.Content;
+        courses = list;
+        return list;
+    }
+
+    int GetMaxPrice()
+    {
+        List<int> price = new List<int>();
+        int max = 0;
+        for(int i = 0; i < courses.Count; i++)
+        {
+            if (courses[i].Price > max)
+            {
+                max = courses[i].Price;
+            }
+        }
+        return max;
+    }
+    public static Grid MakeCourseCard(Course course)
     {
         var CardGrid = new Grid
         {
@@ -95,13 +180,13 @@ public partial class CourseSearch : ContentPage
 
         var stackLayoutLeft = new StackLayout
         {
-            Margin = new Thickness(10, 10, 10, 0),
+            Margin = new Thickness(10, 5, 10, 0),
            
         };
 
         var CourseName = new Label
         {
-            Text = "C# for everyone",
+            Text = course.Name,
             TextColor = Color.FromHex("#3D6D79"),
             FontAttributes = FontAttributes.Bold,
             FontFamily = "Jost",
@@ -111,7 +196,7 @@ public partial class CourseSearch : ContentPage
      
         var ByOrganization = new Label
         {
-            Text = "by NURE",
+            Text = "by " + course.Lecturer.Organization.Name,
             Margin = new Thickness(0, 4, 0, 0),
             TextColor = Color.FromHex("#8C8D8D"),
             FontAttributes = FontAttributes.Bold,
@@ -121,7 +206,7 @@ public partial class CourseSearch : ContentPage
 
         var CourseTopic = new Label
         {
-            Text = "Programming",
+            Text = course.Topic.ToString(),
             Margin = new Thickness(0, 4, 0, 0),
             TextColor = Color.FromHex("#3D6D79"),
             FontSize = 15,
@@ -137,19 +222,19 @@ public partial class CourseSearch : ContentPage
         var stackLayoutRight = new StackLayout
         {
             Margin = new Thickness(0, 10, 0, 10),
-            Spacing = 13
+            Spacing = 10
         };
 
         var CourseModules = new Label
         {
-            Text = "12 modules",
+            Text = course.Modules.Count+ " modules",
             TextColor = Color.FromHex("#3D6D79"),
             FontFamily = "Jost"
         };
 
         var CoursePrice = new Label
         {
-            Text = "20$",
+            Text = course.Price.ToString()+ "$",
             TextColor = Color.FromHex("#3D6D79"),
             Margin = new Thickness(0, 10, 10, 0),
             FontAttributes = FontAttributes.Bold,
@@ -166,5 +251,64 @@ public partial class CourseSearch : ContentPage
         return CardGrid;
     }
 
-    
+    void Sort()
+    {
+        List<Course> list = new List<Course>();
+        list = courses;
+        Picker picker = (Picker)FindByName("topicPicker");
+        string topic = null;
+        if(picker.SelectedItem != null)
+        {
+            topic = picker.SelectedItem.ToString();
+        }
+        picker = (Picker)FindByName("levelPicker");
+        string level = null;
+        if (picker.SelectedItem != null)
+        {
+            level = picker.SelectedItem.ToString();
+        }
+        for(int i = 0; i< list.Count; i++)
+        {
+            if(topic != null)
+            {
+                
+                if (list[i].Topic.ToString() != topic) {
+                list.RemoveAt(i);
+                    i--;
+                }
+            }
+            if (level != null)
+            {
+                if (list[i].Difficulty.ToString() != level)
+                {
+                    list.RemoveAt(i);
+                }
+            }
+        }
+        FillCardsFromList(list);
+    }
+
+    async void FillCardsFromList(List<Course> list)
+    {
+        Grid grid = (Grid)FindByName("Courses");
+        StackLayout CourseStack = new StackLayout { Margin = new Thickness(0, 10, 0, 40) };
+        for (int i = 0; i < list.Count; i++)
+        {
+            Grid card = MakeCourseCard(list[i]);
+            card.AutomationId = list[i].Id;
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += ToCourseDescription;
+            card.GestureRecognizers.Add(tapGesture);
+            CourseStack.Add(card);
+        }
+        ScrollView scrollView = (ScrollView)FindByName("cardList");
+        scrollView.Content = null;
+        scrollView.Content = CourseStack;
+        this.InvalidateMeasure();
+    }
+
+    private void button_Sort(object sender, EventArgs e)
+    {
+        Sort();
+    }
 }
